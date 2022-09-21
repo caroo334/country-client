@@ -1,0 +1,23 @@
+.search-input{
+    background-color: transparent;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgb(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+.search-button{
+    background-color: #22223b;
+    color: #f2e9e4;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0 0 15px rgb(0, 0, 0, 0.2);
+    margin-left: 5px;
+    border: none;
+}
+
+.search-button:hover{
+    cursor: pointer;
+    background-color: #4a4e69;
+}

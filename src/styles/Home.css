@@ -1,0 +1,88 @@
+body{
+    margin: 0px;
+    overflow-x: hidden;
+    /* background-color: #f2e9e4; */
+    /* background-color: #9a8c98; */
+    /* background-image: url('https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); */
+    /* background-image: url('https://images.pexels.com/photos/8828392/pexels-photo-8828392.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); */
+    /* background-image: url('https://images.pexels.com/photos/335393/pexels-photo-335393.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); */
+    background-image: url('https://img.freepik.com/fotos-premium/mapa-politico-mundo-hecho-rompecabezas-colores-madera-pared-clara_633611-2186.jpg?w=2000');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+}
+
+.home-title{
+    color:#c1a48e;
+}
+
+.home-container{
+    margin: 0px;
+    width: 100%;
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
+
+
+
+
+
+.home-card-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 30px;
+    
+}
+/*
+.card-container:nth-child(3n + 1){
+    background-color: #22223b;
+}
+.card-container:nth-child(3n + 2){
+    background-color: #4a4e69;
+}
+.card-container:nth-child(3n + 3){
+    background-color: #9a8c98;
+} */
+
+.home-filter-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.home-filter{
+
+    margin: 5px;
+    /* background-color: transparent; */
+    color: #c1a48e;
+    background-color:  #491700;
+    opacity: 90%;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 15px rgb(0, 0, 0, 0.2);
+}
+.home-filter:hover{
+    cursor: pointer;
+    background-color: #4a4e69;
+}
+
+.home-create-button{
+    background-color: #22223b;
+    color: #f2e9e4;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0 0 15px rgb(0, 0, 0, 0.2);
+    margin-left: 5px;
+    border: none;
+}
+
+.home-create-button:hover{
+    cursor: pointer;
+    background-color: #4a4e69;
+}
