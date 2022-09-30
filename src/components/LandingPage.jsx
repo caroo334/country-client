@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 
 import '../styles/LandingPage.css';
-import { getCountriesToDb } from '../redux/actions';
+// import { getCountriesToDb } from '../redux/actions';
 
 
 

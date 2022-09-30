@@ -10,9 +10,15 @@
     /* background-image: url('https://images.pexels.com/photos/247474/pexels-photo-247474.jpeg?cs=srgb&dl=pexels-pixabay-247474.jpg&fm=jpg'); */
 }
 
+.detail-card-activities{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .detail-card-container{
     padding: 20px;
     display: flex;
+    margin:10px;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
@@ -30,4 +36,24 @@
 
 .detail-info{
     margin: 10px;
+}
+
+.detail-button{
+    padding: 10px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(21px);
+    box-shadow: 0 0px 0px 15 rgba(0, 0, 0, 0.36);
+    border: solid rgba(255, 255, 255, 0.16);
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.detail-button{
+    cursor: pointer;
+}
+
+.detail-button:hover{
+    background-color: #22223b;
+    opacity: 70%;
+    cursor: pointer;
 }

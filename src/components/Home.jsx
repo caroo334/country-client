@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCountries, orderByName} from '../redux/actions';
+import { getCountries, orderByName, orderByPopulation, getCountriesFilteredByActivities, getCountriesFilteredByContinent } from '../redux/actions';
 //components
 import Card from './Card';
 import Paginado from './Paginado';
@@ -11,6 +11,7 @@ import '../styles/Home.css';
 export default function Home() {
     const dispatch = useDispatch();
     const allCountries = useSelector((state) => state.countries);
+    const continents = useSelector(state => state.continents);
 
     //PAGINADO
     const [currentPage, setCurrentPage] = useState(1);
@@ -19,27 +20,12 @@ export default function Home() {
     const indexOfFirstcountry = indexOfLastCountry - countriesPerPage;
     const currentcountry = allCountries.slice(indexOfFirstcountry, indexOfLastCountry);
 
-    const continents = allCountries.map(country => country.continents)
-    const continentsFiltered = [...new Set(continents)];
-
     const [orden, setOrden] = useState('');
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
     }
-
-    // const filteredCountries = () => {
-    //     return allCountries.slice(currentPage, currentPage + 20);
-    // }
-    // const nextPage = () => {
-    //     setCurrentPage(currentPage + 20);
-    // } 
-    // <button onClick={nextPage}>Next</button>
-
-
-
-
-
+    
     // accedo a la info cargada en la base de datos (actions)
     useEffect(() => {
         dispatch(getCountries());
@@ -53,6 +39,32 @@ export default function Home() {
         setOrden(`Ordenado ${e.target.value}`) // mofifica el estado local y se renderiza
     }
 
+    function handleOrderByPopulation(e) {
+        e.preventDefault();
+        dispatch(orderByPopulation(e.target.value));
+        setCurrentPage(1);
+        setOrden(e.target.value);
+    }
+
+    const handleChangeActivitySelect = (e) => {
+        e.preventDefault();
+
+        dispatch(getCountriesFilteredByActivities(e.target.value))
+    }
+
+    const handleCHangeContinentSelect = (e) => {
+        e.preventDefault();
+        dispatch(getCountriesFilteredByContinent(e.target.value));
+    }
+
+    const handleChangeReload = (e) => {
+        e.preventDefault();
+        console.log('se apreto el boton', e, 'getCountries', getCountries())
+        dispatch(getCountries());
+    }
+
+    
+
 
     return (
 
@@ -61,6 +73,7 @@ export default function Home() {
                 <Link to='/create-activity'>
                     <button className='home-create-button'>add activity</button>
                 </Link>
+                <button onClick={(e) => handleChangeReload(e)} className='home-create-button'>Reload</button>
             </nav>
             <h1 className='home-title'> COUNTRIES </h1>
             <SearchBar />
@@ -69,27 +82,31 @@ export default function Home() {
                     <option value='asc'>A - Z</option>
                     <option value='desc'>Z - A</option>
                 </select>
-                <select className='home-filter'>
-                    {continentsFiltered.map(c => {
+
+                <select className='home-filter' onChange={handleCHangeContinentSelect}>
+                    <option value='all'>Continents</option>
+                    {continents && continents.map((c, index) => {
                         return (
-                            <option>
+                            <option key={`${index}_${c}`}>
                                 {c}
                             </option>
                         )
                     })}
                 </select>
-                <select className='home-filter'>
-                    <option>Poblacion</option>
-                    <option value='masdemil'>+1 000</option>
-                    <option value='masdemillon'>+1 000 000</option>
-                    <option>+10 000 000</option>
-                    <option>+30 000 000</option>
-                    <option>+50 000 000</option>
+
+                <select className='home-filter' onChange={e => handleOrderByPopulation(e)}>
+                    <option>Population</option>
+                    <option value='low'>Low</option>
+                    <option value='high'>High</option>
                 </select>
-                <select className='home-filter'>
-                    <option>Tipo de actividad turistica</option>
+
+                <select className='home-filter' onChange={handleChangeActivitySelect}>
+                    <option value='all'>All</option>
+                    <option value='with-activity'>With Activity</option>
+                    <option value='without-activity'>Without Activity</option>
                 </select>
             </div>
+
             <Paginado
                 countriesPerPage={countriesPerPage}
                 allCountries={allCountries.length}
@@ -98,10 +115,10 @@ export default function Home() {
             <div className='home-card-container'>
 
                 {
-                    currentcountry.length > 0 ? currentcountry.map(a => {
+                    currentcountry.length > 0 ? currentcountry.map((a, index) => {
                         return (
-                            <Link to={'/detail/' + a.code} style={{ textDecoration: 'none', color: 'white' }}>
-                                <div >
+                            <Link key={`${index}-${a}`} to={'/detail/' + a.code} style={{ textDecoration: 'none', color: 'white' }}>
+                                <div className='card-container-home'>
                                     <Card key={a.id} {...a} />
                                 </div>
                             </Link>
@@ -117,33 +134,6 @@ export default function Home() {
 
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-        // {allCountries?.map((c, index) => <Card key={`${c.id}_${index}`} {...c} />)}
-
-        // const dispatch = useDispatch();
-
-        // const darkModeValue = useSelector((state) => state.darkMode);
-
-        // const handleClick = () => {
-        //   dispatch(setDarkmode())
-        // }
-
-        // return (
-        //   <div>
-        //     <button onClick={handleClick}>Invertir Dark Mode</button>
-        //     {darkModeValue ? <span>Mostrar el Dark Mode</span> : <span>Mostrar el Light Mode</span>}
-        //   </div>
-        // )
     )
 
 }

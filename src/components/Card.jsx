@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/Card.css';
 
 
@@ -7,7 +6,7 @@ export default function Cards({ name, flags, population, capital, continents, su
     return (
         <div className='card-container'>
             <h1>{name}</h1>
-            <img src={flags} className='card-img' />
+            <img src={flags} className='card-img' alt='Flag' />
                 <span>Population: {population}</span>
                 {/* {capital? <span>capital</span> : 'undefined'} */}
                 {capital && <span className='card-text'>Capital: {capital}</span>}

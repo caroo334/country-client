@@ -47,3 +47,19 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 15px rgb(0, 0, 0, 0.2);
 }
+
+@media(max-width: 400px){
+    .card-container{
+        margin: auto;
+        max-width: 320px;
+    }
+    .card-img{
+        max-width: 250px;
+    }
+}
+
+@media(max-width: 837px){
+    .card-container{
+        padding: 30px;
+    }
+}

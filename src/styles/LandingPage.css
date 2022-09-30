@@ -5,13 +5,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #22223b;
 }
 
 
 
 .landing-button {
     padding: 10px;
-
+    color: #22223b;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
     backdrop-filter: blur(21px);
     -webkit-backdrop-filter: blur(21px);
