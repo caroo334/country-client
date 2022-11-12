@@ -81,7 +81,6 @@ export function getNameCountries(name) {
   };
 }
 
-//AUN NO ANDA
 export function postActivity(payload) {
   return async function (dispatch) {
     try {
@@ -95,8 +94,8 @@ export function postActivity(payload) {
         payload: response.data,
       });
     } catch (error) {
-        alert('Hubo un error')
-        return(error);
+        alert('An error ocurred')
+        console.log(error);
     }
   };
 }
